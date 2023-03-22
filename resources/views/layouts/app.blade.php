@@ -12,69 +12,47 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <link href="{{asset('vendor/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('vendor/nouislider/nouislider.min.css')}}">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+<body class="vh-100">
+<div id="preloader">
+    <div class="waviy">
+        <div class="text-center mb-3">
+            <a href="index.html"><img src="{{asset('images/Logo.jpg')}}" alt="" height="250"></a>
+        </div>
+        <span style="--i:1">L</span><span style="--i:2">o</span><span style="--i:3">a</span><span style="--i:4">d</span><span style="--i:5">i</span>
+        <span style="--i:6">n</span><span style="--i:7">g</span><span style="--i:8">.</span><span style="--i:9">.</span><span style="--i:10">.</span>
     </div>
+</div>
+    @guest
+        @yield('content')
+    @else
+    <div id="main-wrapper">
+        @include('layouts.partials.navheader')
+        @include('layouts.partials.sidebar')
+            @yield('content')
+        @include('layouts.partials.footer')
+    </div>
+    @endguest
+
+    <!-- Required vendors -->
+    <script src="{{asset('vendor/global/global.min.js')}}"></script>
+	<script src="{{asset('vendor/chart.js/Chart.bundle.min.js')}}"></script>
+	<script src="{{asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
+	
+	<!-- Apex Chart -->
+	<script src="{{asset('vendor/apexchart/apexchart.js')}}"></script>
+	<script src="{{asset('vendor/nouislider/nouislider.min.js')}}"></script>
+	<script src="{{asset('vendor/wnumb/wNumb.js')}}"></script>
+	
+	<!-- Dashboard 1 -->
+	<script src="{{asset('js/dashboard/dashboard-1.js')}}"></script>
+    <script src="{{asset('js/custom.min.js')}}"></script>
+	<script src="{{asset('js/dlabnav-init.js')}}"></script>
+	<script src="{{asset('js/demo.js')}}"></script>
 </body>
 </html>
