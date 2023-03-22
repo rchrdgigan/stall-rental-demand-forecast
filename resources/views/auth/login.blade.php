@@ -3,7 +3,7 @@
 @section('content')
 <div class="authincation h-100" style="background:url('{{asset('images/bg.png')}}') no-repeat center center fixed;  background-size: cover;">
     <div class="container h-100">
-        <div class="row justify-content-end h-100 align-items-center">
+        <div class="row justify-content-center h-100 align-items-center">
             <div class="col-md-6">
                 <div class="authincation-content">
                     <div class="row no-gutters">
@@ -52,9 +52,7 @@
                                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                                     </div>
                                 </form>
-                                <!-- <div class="new-account mt-3">
-                                    <p>Don't have an account? <a class="text-primary" href="{{route('register')}}">Sign up</a></p>
-                                </div> -->
+                               
                             </div>
                         </div>
                     </div>
