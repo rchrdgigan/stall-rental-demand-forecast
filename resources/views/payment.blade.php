@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Tenants
+Payments
 @endsection
 
 @push('links')
@@ -14,7 +14,7 @@ Tenants
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Tenants</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Payments</a></li>
             </ol>
         </div>
 
@@ -23,7 +23,7 @@ Tenants
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">List of Tenants</h4>
+                        <h4 class="card-title">List of Payments</h4>
                         <a href="" class="btn btn-primary">Add New</a>
                     </div>
                     <div class="card-body">
@@ -32,18 +32,18 @@ Tenants
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Date</th>
                                         <th>Tenants Name</th>
-                                        <th>Stall Rented</th>
-                                        <th>Excess Rate</th>
+                                        <th>Amount</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
+                                        <td>Mar 23, 2023</td>
                                         <td>Tenant 1</td>
-                                        <td>5</td>
-                                        <td>30,000.00</td>
+                                        <td>5,000.00</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
@@ -56,9 +56,9 @@ Tenants
                                 <tfoot>
                                     <tr>
                                         <th>#</th>
+                                        <th>Date</th>
                                         <th>Tenants Name</th>
-                                        <th>Stall Rented</th>
-                                        <th>Excess Rate</th>
+                                        <th>Amount</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

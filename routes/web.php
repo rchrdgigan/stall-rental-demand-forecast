@@ -2,7 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{HomeController,SectionController,PhaseController,TenantController};
+use App\Http\Controllers\{
+    HomeController,
+    SectionController,
+    PhaseController,
+    TenantController,
+    PaymentController,
+    ReportController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/section', [SectionController::class, 'index'])->name('section');
     Route::get('/phase', [PhaseController::class, 'index'])->name('phase');
     Route::get('/tenant', [TenantController::class, 'index'])->name('tenant');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/report', [ReportController::class, 'index'])->name('report');
 });
 
 Auth::routes();
