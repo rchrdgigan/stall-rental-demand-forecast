@@ -9,7 +9,7 @@ Dashboard
     <!-- row -->
     <div class="container-fluid">
         <div class="row invoice-card-row">
-            <div class="col-xl-3 col-xxl-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-sm-6">
                 <div class="card bg-warning invoice-card">
                     <div class="card-body d-flex">
                         <div class="icon me-3">
@@ -37,7 +37,7 @@ Dashboard
 
                 </div>
             </div>
-            <div class="col-xl-3 col-xxl-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-sm-6">
                 <div class="card bg-success invoice-card">
                     <div class="card-body d-flex">
                         <div class="icon me-3">
@@ -64,34 +64,7 @@ Dashboard
                     </button>
                 </div>
             </div>
-            <div class="col-xl-3 col-xxl-3 col-sm-6">
-                <div class="card bg-info invoice-card">
-                    <div class="card-body d-flex">
-                        <div class="icon me-3">
-                            <svg width="35px" height="34px">
-                            <path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M33.002,9.728 C31.612,6.787 29.411,4.316 26.638,2.583 C22.781,0.179 18.219,-0.584 13.784,0.438 C9.356,1.454 5.585,4.137 3.178,7.989 C0.764,11.840 -0.000,16.396 1.023,20.825 C2.048,25.247 4.734,29.013 8.584,31.417 C11.297,33.110 14.409,34.006 17.594,34.006 L17.800,34.006 C20.973,33.967 24.058,33.050 26.731,31.363 C27.509,30.872 27.735,29.849 27.243,29.072 C26.751,28.296 25.727,28.070 24.949,28.561 C22.801,29.922 20.314,30.660 17.761,30.693 C15.141,30.726 12.581,30.002 10.346,28.614 C7.241,26.675 5.080,23.647 4.262,20.088 C3.444,16.515 4.056,12.850 5.997,9.748 C10.001,3.353 18.473,1.401 24.876,5.399 C27.110,6.793 28.879,8.779 29.996,11.143 C31.087,13.447 31.513,16.004 31.227,18.527 C31.126,19.437 31.778,20.260 32.696,20.360 C33.607,20.459 34.432,19.809 34.531,18.892 C34.884,15.765 34.352,12.591 33.002,9.728 L33.002,9.728 Z"></path>
-                            <path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M23.380,11.236 C22.728,10.585 21.678,10.585 21.026,11.236 L17.608,14.656 L14.190,11.243 C13.539,10.592 12.488,10.592 11.836,11.243 C11.184,11.893 11.184,12.942 11.836,13.593 L15.254,17.006 L11.836,20.420 C11.184,21.071 11.184,22.120 11.836,22.770 C12.162,23.096 12.588,23.255 13.014,23.255 C13.438,23.255 13.864,23.096 14.190,22.770 L17.608,19.357 L21.026,22.770 C21.352,23.096 21.777,23.255 22.203,23.255 C22.629,23.255 23.054,23.096 23.380,22.770 C24.031,22.120 24.031,21.071 23.380,20.420 L19.962,17.000 L23.380,13.587 C24.031,12.936 24.031,11.887 23.380,11.236 L23.380,11.236 Z"></path>
-                            </svg>
-                            
-                        </div>
-                        <div>
-                            <h2 class="text-white invoice-num">0</h2>
-                            <span class="text-white fs-18">Total unpaid this month</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-info">
-                    <span>View List</span>
-                    <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo3/dist/../src/media/svg/icons/Code/Right-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <rect x="0" y="0" width="24" height="24"/>
-                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
-                            <path d="M7.96323356,15.1775211 C7.62849853,15.5122561 7.08578582,15.5122561 6.75105079,15.1775211 C6.41631576,14.842786 6.41631576,14.3000733 6.75105079,13.9653383 L11.8939067,8.82248234 C12.2184029,8.49798619 12.7409054,8.4866328 13.0791905,8.79672747 L18.2220465,13.5110121 C18.5710056,13.8308912 18.5945795,14.3730917 18.2747004,14.7220508 C17.9548212,15.0710098 17.4126207,15.0945838 17.0636617,14.7747046 L12.5257773,10.6149773 L7.96323356,15.1775211 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.500001, 12.000001) rotate(-270.000000) translate(-12.500001, -12.000001) "/>
-                        </g>
-                    </svg><!--end::Svg Icon--></span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-xl-3 col-xxl-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-sm-6">
                 <div class="card bg-secondary invoice-card">
                     <div class="card-body d-flex">
                         <div class="icon me-3">

@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     PhaseController,
     TenantController,
     PaymentController,
-    ReportController
+    ReportController,
+    ProfileController
 };
 
 /*
@@ -34,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/tenant', [TenantController::class, 'index'])->name('tenant');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::get('/report', [ReportController::class, 'index'])->name('report');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 });
 
 Auth::routes();

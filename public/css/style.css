@@ -20034,14 +20034,19 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [direction="rtl"] .email-list .message .col-mail-2 .subject {
     right: 0;
     left: 5.5rem; }
-
+.cover-photo {
+  background-size: cover;
+  background-position: center;
+  min-height: 8.625rem;
+  width: 100%; 
+}
 .photo-content {
   position: relative; }
-  .photo-content .cover-photo {
+  .photo-content {
     background: url(../images/profile/cover.jpg);
     background-size: cover;
     background-position: center;
-    min-height: 15.625rem;
+    min-height: 8.625rem;
     width: 100%; }
 
 .profile .profile-photo {
