@@ -42,7 +42,11 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,84,1) 0%, rgba(
                         </div>
                         <div class="profile-info">
                             <div class="profile-photo">
+                                @if(isset(auth()->user()->image))
+                                <img src="{{asset('storage/user_profile/'.auth()->user()->image)}}" class="img-fluid rounded-circle" alt="">
+                                @else
                                 <img src="{{asset('images/profile.png')}}" class="img-fluid rounded-circle" alt="">
+                                @endif
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2 text-center">
@@ -84,7 +88,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,84,1) 0%, rgba(
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="form-validation">
-            <form action="{{route('profile.update')}}" method="post" class="needs-validation" novalidate="">
+            <form action="{{route('profile.update')}}" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
@@ -112,6 +116,12 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,84,1) 0%, rgba(
                                 Please enter your email.
                             </div>
                         </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-file">
+                            <input type="file" name="image" class="form-file-input form-control">
+                        </div>
+                        <span class="input-group-text">Profile Picture</span>
                     </div>
                 </div>
                 <div class="modal-footer">
