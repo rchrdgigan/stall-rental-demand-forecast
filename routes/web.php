@@ -30,7 +30,17 @@ Route::middleware('auth')->group(function () {
         return view('auth.register');
     })->name('register');
 
-    Route::get('/section', [SectionController::class, 'index'])->name('section');
+    Route::controller(SectionController::class)
+    ->as('section.')
+    ->prefix('section')
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/destroy', 'destroy')->name('destroy');
+    });
+
     Route::get('/phase', [PhaseController::class, 'index'])->name('phase');
     Route::get('/tenant', [TenantController::class, 'index'])->name('tenant');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
