@@ -83,7 +83,7 @@ Edit Section
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{route('section.edit',$data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a data-bs-toggle="modal" id="{{$data->id}}" data-bs-target="#delModal" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                             </div>												
                                         </td>	
                                     </tr>
@@ -104,6 +104,28 @@ Edit Section
            
         </div>
     </div>
+</div>
+
+<!-- Del Modal -->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="form-validation">
+            <form action="{{route('section.destroy')}}" method="post" id="delete_frm">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body text-center">
+                    <input type="hidden" name="id">
+                    <i class="fa fa-exclamation-triangle fa-6x text-warning" aria-hidden="true"></i>
+                    <p class="fs-4">Are you sure you want to delete this data?</p>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes, Delete it</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -133,4 +155,12 @@ Edit Section
 			})
 		})()
 	</script>
+
+<script>
+$('#delModal').on('show.bs.modal', function (e) {
+    var opener=e.relatedTarget;
+    var id=$(opener).attr('id');
+    $('#delete_frm').find('[name="id"]').val(id);
+});
+</script>
 @endpush

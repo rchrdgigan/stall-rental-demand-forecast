@@ -117,8 +117,7 @@ Section
                     <input type="hidden" name="id">
                     <i class="fa fa-exclamation-triangle fa-6x text-warning" aria-hidden="true"></i>
                     <p class="fs-4">Are you sure you want to delete this data?</p>
-                </div>
-                <div class="modal-footer">
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-danger">Yes, Delete it</button>
                 </div>
