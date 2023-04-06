@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Section;
 
 class PhaseController extends Controller
 {
@@ -23,7 +24,8 @@ class PhaseController extends Controller
      */
     public function create()
     {
-        //
+        $section = Section::get();
+        return view('create-phase', compact('section'));
     }
 
     /**

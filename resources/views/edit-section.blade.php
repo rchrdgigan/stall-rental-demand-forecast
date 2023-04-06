@@ -67,7 +67,7 @@ Edit Section
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example3" class="display" style="min-width: 400px">
+                            <table id="table_id" class="display" style="min-width: 400px">
                                 <thead>
                                     <tr>
                                         <th>Date Created</th>
@@ -131,36 +131,42 @@ Edit Section
 
 @push('script')
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/plugins-init/datatables.init.js')}}"></script>
-
 
 <script>
-		(function () {
-		  'use strict'
+    $(function () {
+        var table = $('#table_id').DataTable({
+            order:[[0,'desc']],
+            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,"All"]],
+            language: {
+                paginate: {
+                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
+                }
+            }
+        });
+    });
+    
+    (function () {
+        'use strict'
 
-		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-		  var forms = document.querySelectorAll('.needs-validation')
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
 
-		  // Loop over them and prevent submission
-		  Array.prototype.slice.call(forms)
-			.forEach(function (form) {
-			  form.addEventListener('submit', function (event) {
-				if (!form.checkValidity()) {
-				  event.preventDefault()
-				  event.stopPropagation()
-				}
+            form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 
-				form.classList.add('was-validated')
-			  }, false)
-			})
-		})()
-	</script>
-
-<script>
-$('#delModal').on('show.bs.modal', function (e) {
-    var opener=e.relatedTarget;
-    var id=$(opener).attr('id');
-    $('#delete_frm').find('[name="id"]').val(id);
-});
+    $('#delModal').on('show.bs.modal', function (e) {
+        var opener=e.relatedTarget;
+        var id=$(opener).attr('id');
+        $('#delete_frm').find('[name="id"]').val(id);
+    });
 </script>
 @endpush

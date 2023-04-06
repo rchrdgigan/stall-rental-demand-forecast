@@ -14,7 +14,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections = Section::get();
+        $sections = Section::latest()->get();
         return view('section',compact('sections'));
     }
 

@@ -41,7 +41,18 @@ Route::middleware('auth')->group(function () {
         Route::delete('/destroy', 'destroy')->name('destroy');
     });
 
-    Route::get('/phase', [PhaseController::class, 'index'])->name('phase');
+    Route::controller(PhaseController::class)
+    ->as('phase.')
+    ->prefix('phase')
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/destroy', 'destroy')->name('destroy');
+    });
+
     Route::get('/tenant', [TenantController::class, 'index'])->name('tenant');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::get('/report', [ReportController::class, 'index'])->name('report');

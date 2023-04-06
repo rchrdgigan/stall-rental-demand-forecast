@@ -24,14 +24,14 @@ Phase
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Phase List</h4>
-                        <a href="" class="btn btn-primary">Add New</a>
+                        <a href="{{route('phase.create')}}" class="btn btn-primary">Add New</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example3" class="display" style="min-width: 845px">
+                            <table id="table_id" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Date Created</th>
                                         <th>Stall No.</th>
                                         <th>Section</th>
                                         <th>Description</th>
@@ -69,8 +69,11 @@ Phase
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Phase</th>
+                                        <th>Date Created</th>
+                                        <th>Stall No.</th>
+                                        <th>Section</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -87,5 +90,18 @@ Phase
 
 @push('script')
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/plugins-init/datatables.init.js')}}"></script>
+<script>
+    $(function () {
+        var table = $('#table_id').DataTable({
+            order:[[0,'desc']],
+            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,"All"]],
+            language: {
+                paginate: {
+                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
+                }
+            }
+        });
+    });
+</script>
 @endpush
