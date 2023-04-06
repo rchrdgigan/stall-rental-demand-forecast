@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Models\Phase;
 
 class PhaseController extends Controller
 {
@@ -14,7 +15,8 @@ class PhaseController extends Controller
      */
     public function index()
     {
-        return view('phase');
+        $phase = Phase::with('section')->latest()->get();
+        return view('phase', compact('phase'));
     }
 
     /**
@@ -36,7 +38,21 @@ class PhaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'stall_no' => 'required',
+            'cat_id' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        Phase::create([
+            'stall_no' => $request->stall_no,
+            'section_id' => $request->cat_id,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('phase.index')->with("success","Successfully Added!");
     }
 
     /**

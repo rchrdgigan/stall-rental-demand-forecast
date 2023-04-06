@@ -18,9 +18,8 @@ Create New Phase
         <div class="row">
             <div class="col-md-12">
                 <div class="form-validation">
-                    <form action="" method="POST" class="needs-validation" novalidate="">
+                    <form action="{{route('phase.store')}}" method="POST" class="needs-validation" novalidate="">
                         @csrf
-                        @method('PUT')
                         <div class="row card">
                             <div class="card-header">
                                 <h4 class="card-title">Phase Form</h4>
@@ -30,15 +29,15 @@ Create New Phase
 
                                 <div class="mb-3 row">
                                     <div class="col-md-6">
-                                        <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                        <label class="col-lg-12 col-form-label" for="stallNo">
                                             Stall No 
                                         </label>
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control" id="validationCustom01" name="stall_no"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall number.." required="">
+                                            <input type="text" class="form-control" id="stallNo" name="stall_no"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall number.." required="">
                                             <div class="invalid-feedback">
                                                 Please enter a stall number.
                                             </div>
-                                            @error('section_name')
+                                            @error('stall_no')
                                                 <small class="text-danger" role="alert">
                                                     {{ $message }}
                                                 </small>
@@ -46,16 +45,16 @@ Create New Phase
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                        <label class="col-lg-12 col-form-label" for="selectCatName">
                                             Select Category Name
                                         </label>
                                         <div class="col-lg-12">
-                                            <select name="cat_id" id="" class="form-control">
+                                            <select name="cat_id" id="selectCatName" class="form-control">
                                                 @foreach($section as $data)
                                                 <option value="{{$data->id}}">{{$data->section_name}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('section_name')
+                                            @error('cat_id')
                                                 <small class="text-danger" role="alert">
                                                     {{ $message }}
                                                 </small>
@@ -65,12 +64,15 @@ Create New Phase
                                 </div>
                                
                                 <div class="mb-3 row">
-                                    <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                    <label class="col-lg-12 col-form-label" for="description">
                                         Description
                                     </label>
                                     <div class="col-lg-12">
-                                        <textarea name="description" class="form-control" id="" cols="30" rows="5"  placeholder="Enter a stall description.." ></textarea>
-                                        @error('section_name')
+                                        <textarea name="description" class="form-control" id="description" cols="30" rows="5" placeholder="Enter a stall description.."  required=""></textarea>
+                                        <div class="invalid-feedback">
+                                            Please enter a stall description.
+                                        </div>
+                                        @error('description')
                                             <small class="text-danger" role="alert">
                                                 {{ $message }}
                                             </small>
@@ -78,15 +80,15 @@ Create New Phase
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                    <label class="col-lg-12 col-form-label" for="price">
                                         Price
                                     </label>
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control" id="validationCustom01" name="price"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall price.." required="">
+                                        <input type="text" class="form-control" id="price" name="price"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall price.." required="">
                                         <div class="invalid-feedback">
                                             Please enter a stall price.
                                         </div>
-                                        @error('section_name')
+                                        @error('price')
                                             <small class="text-danger" role="alert">
                                                 {{ $message }}
                                             </small>

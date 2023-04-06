@@ -26,6 +26,9 @@ Phase
                         <h4 class="card-title">Phase List</h4>
                         <a href="{{route('phase.create')}}" class="btn btn-primary">Add New</a>
                     </div>
+                    <div class="col-md-12 p-2">
+                        @include('message')
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="table_id" class="display" style="min-width: 845px">
@@ -40,12 +43,13 @@ Phase
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($phase as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>5</td>
-                                        <td>Phase 3</td>
-                                        <td>Example1</td>
-                                        <td>30,000.00</td>
+                                        <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
+                                        <td>{{$data->stall_no}}</td>
+                                        <td>{{$data->section->section_name}}</td>
+                                        <td>{{$data->description}}</td>
+                                        <td>{{$data->price}}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
@@ -53,19 +57,7 @@ Phase
                                             </div>												
                                         </td>	
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>6</td>
-                                        <td>Phase 1</td>
-                                        <td>Example2</td>
-                                        <td>36,000.00</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>												
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
