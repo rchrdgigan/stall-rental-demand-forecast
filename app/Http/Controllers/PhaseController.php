@@ -74,7 +74,9 @@ class PhaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_phase = Phase::findOrFail($id);
+        $section = Section::get();
+        return view('edit-phase', compact('edit_phase','section'));
     }
 
     /**
@@ -86,7 +88,21 @@ class PhaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'stall_no' => 'required',
+            'cat_id' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        $phase = Phase::findOrFail($id);
+        $phase->stall_no = $request->stall_no;
+        $phase->section_id = $request->cat_id;
+        $phase->description = $request->description;
+        $phase->price = $request->price;
+        $phase->update();
+
+        return redirect()->route('phase.index')->with("success","Successfully Added!");
     }
 
     /**
