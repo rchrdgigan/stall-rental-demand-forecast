@@ -56,17 +56,6 @@ class PhaseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -102,7 +91,7 @@ class PhaseController extends Controller
         $phase->price = $request->price;
         $phase->update();
 
-        return redirect()->route('phase.index')->with("success","Successfully Added!");
+        return redirect()->route('phase.index')->with("success","Successfully Updated!");
     }
 
     /**
@@ -111,8 +100,10 @@ class PhaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $phase = Phase::findOrFail($request->id);
+        $phase->delete();
+        return redirect()->route('phase.index')->with("success","Data Succesfully Removed!");
     }
 }
