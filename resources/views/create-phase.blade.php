@@ -10,8 +10,9 @@ Create New Phase
         
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Create New Phase</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('phase.index')}}">Phase</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Create New Phase</a></li>
             </ol>
         </div>
 

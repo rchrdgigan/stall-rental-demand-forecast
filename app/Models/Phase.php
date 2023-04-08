@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Phase extends Model
 {
     use HasFactory;
+    protected $appends = ['priceformat'];
 
     protected $fillable = [
         'stall_no',
@@ -15,6 +16,11 @@ class Phase extends Model
         'description',
         'price',
     ];
+
+    public function getPriceFormatAttribute()
+    {
+        return "₱ ".number_format("{$this['price']}");
+    }
 
     public function section() {
         return $this->belongsTo(Section::class);

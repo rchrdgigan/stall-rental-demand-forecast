@@ -13,8 +13,8 @@ Phase
         
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Phase</a></li>
+                <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('phase.index')}}">Phase</a></li>
             </ol>
         </div>
 
@@ -35,10 +35,8 @@ Phase
                                 <thead>
                                     <tr>
                                         <th>Date Created</th>
-                                        <th>Stall No.</th>
-                                        <th>Section</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
+                                        <th>Phase</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,10 +44,14 @@ Phase
                                     @foreach($phase as $data)
                                     <tr>
                                         <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
-                                        <td>{{$data->stall_no}}</td>
-                                        <td>{{$data->section->section_name}}</td>
-                                        <td>{{$data->description}}</td>
-                                        <td>{{$data->price}}</td>
+                                        <td>
+                                            <small>Stall # : <b>{{$data->stall_no}}</b></small><br>
+                                            <small>Section : <b>{{$data->section->section_name}}</b></small><br>
+                                            <small>Description : <b>{{$data->description}}</b></small><br>
+                                            <small>Price : <b>{{$data->priceformat}}</b></small><br>
+
+                                        </td>
+                                        <td><span class="bg-danger text-white rounded p-1">Unoccupied</span></td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{route('phase.edit', $data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
@@ -62,10 +64,8 @@ Phase
                                 <tfoot>
                                     <tr>
                                         <th>Date Created</th>
-                                        <th>Stall No.</th>
-                                        <th>Section</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
+                                        <th>Phase</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

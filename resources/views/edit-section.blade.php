@@ -13,8 +13,9 @@ Edit Section
         
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Edit Category</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('section.index')}}">Category</a></li>
+                <li class="breadcrumb-item active"><a>Edit Category</a></li>
             </ol>
         </div>
 

@@ -53,7 +53,19 @@ Route::middleware('auth')->group(function () {
         Route::delete('/destroy', 'destroy')->name('destroy');
     });
 
-    Route::get('/tenant', [TenantController::class, 'index'])->name('tenant');
+    Route::controller(TenantController::class)
+    ->as('tenant.')
+    ->prefix('tenant')
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/destroy', 'destroy')->name('destroy');
+    });
+
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::get('/report', [ReportController::class, 'index'])->name('report');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
