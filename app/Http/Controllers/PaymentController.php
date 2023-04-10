@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -13,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('payment');
+        $payment = Payment::get();
+        return view('payment', compact('payment'));
     }
 
     /**
@@ -35,36 +37,16 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'lname' => 'required',
-            'fname' => 'required',
+            'tenant_id' => 'required',
+            'amount' => 'required',
         ]);
-        $phase = Phase::findOrFail($request->stall_no);
-       
-        $tenant = Tenant::create([
-            'lname' => $request->lname,
-            'fname' => $request->fname,
-            'mname' => $request->mname,
-            'email' => $request->email,
-            'contact' => $request->contact,
-            'phase_id' => $request->stall_no,
-            'date_reg' => $request->date_reg,
+        Payment::create([
+            'tenant_id' => $request->tenant_id,
+            'amount' => $request->amount,
         ]);
-        $tenant->phase()->update([
-            'status' => true,
-        ]);
-        return redirect()->route('tenant.index')->with("success","Successfully Added!");
+        return redirect()->route('payment.index')->with("success","Payment Successfully Added!");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -74,7 +56,8 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_pay = Payment::findOrFail($id);
+        return view('edit-payment', compact('edit_pay'));
     }
 
     /**
@@ -86,17 +69,19 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'tenant_id' => 'nullable',
+            'amount' => 'required',
+        ]);
+
+        $payment = Payment::findOrFail($id);
+        if(isset($request->tenant_id)){
+            $payment->tenant_id = $request->tenant_id;
+        }
+        $payment->amount = $request->amount;
+        $payment->update();
+
+        return redirect()->route('payment.index')->with("success","Successfully Updated!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

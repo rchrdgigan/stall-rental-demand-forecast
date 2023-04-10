@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Create New Payment
+Edit Payment
 @endsection
 
 @push('links')
@@ -16,18 +16,19 @@ Create New Payment
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{route('payment.index')}}">Payment</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Create New Payment</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Payment</a></li>
             </ol>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="form-validation">
-                    <form action="{{route('payment.store')}}" method="POST" class="needs-validation" novalidate="">
+                    <form action="{{route('payment.update',$edit_pay->id)}}" method="POST" class="needs-validation" novalidate="">
                         @csrf
+                        @method('PUT')
                         <div class="row card">
                             <div class="card-header">
-                                <h4 class="card-title">Payment Form</h4>
+                                <h4 class="card-title">Edit Payment</h4>
                             </div>
                            
                             <div class="col-md-12 pt-2">
@@ -36,7 +37,7 @@ Create New Payment
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                            @livewire('payments')
+                                            @livewire('payments',['edit_pay' => $edit_pay])
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -46,7 +47,7 @@ Create New Payment
                                                 </div>
                                                 <div class="input-group mb-2">
 													<div class="input-group-text">₱ </div>
-                                                    <input type="number" name="amount" class="form-control" id="amount" value="{{  old('amount') }}" placeholder="Enter a amount..">
+                                                    <input type="number" name="amount" class="form-control" id="amount" value="{{ $edit_pay->amount ?? old('amount') }}" placeholder="Enter a amount..">
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +57,7 @@ Create New Payment
                                 <div class="mb-3 row">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{route('payment.index')}}" class="btn btn-secondary ">Cancel</a>
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </div>

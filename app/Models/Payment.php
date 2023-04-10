@@ -13,5 +13,8 @@ class Payment extends Model
         'tenant_id',
         'amount',
     ];
-    
+
+    public function tenant() {
+        return $this->belongsTo(Tenant::class);
+    }
 }

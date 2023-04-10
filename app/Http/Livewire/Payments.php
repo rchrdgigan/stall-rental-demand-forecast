@@ -8,6 +8,7 @@ use App\Models\Tenant;
 class Payments extends Component
 {
     public $selectedTenant = null;
+    public $edit_pay = null;
 
     public function render()
     {

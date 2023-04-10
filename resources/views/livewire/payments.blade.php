@@ -1,4 +1,10 @@
 <div>
+    @if(isset($edit_pay))
+    <div class="mb-3">
+        <h4 class="card-title mb-2">Tentant</h4>
+        Name : {{$edit_pay->tenant->fullname}} <br>
+    </div>
+    @endif
     <div class="mb-3">
         <h4 class="card-title">Select Tentant</h4><br>
         <select wire:model="selectedTenant" name="tenant_id" class="form-control">
@@ -19,7 +25,7 @@
             <hr>
             <p>Tenant : <b>{{ $tenants_details->fullname ?? 'N/A'}}</b></p>
             <p>Rental Rate : <b>{{ $tenants_details->phase->priceformat ?? 'N/A'}}</b></p>
-            <p>Total Paid : <b>{{ $tenants_details->payment->amount ?? '0'}}</b></p>
+            <p>Total Paid : <b>{{ $tenants_details->payment->sum('amount') ?? 'N/A'}}</b></p>
             <hr>
         </div>
     </div>

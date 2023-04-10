@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Phase;
 use App\Models\Tenant;
+use App\Models\Payment;
 
 class TenantController extends Controller
 {
@@ -75,7 +76,7 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        $show_tenant= Tenant::findOrFail($id);
+        $show_tenant= Tenant::with('payment')->findOrFail($id);
         $phase = Phase::get();
         return view('show-tenant',compact('phase','show_tenant'));
     }

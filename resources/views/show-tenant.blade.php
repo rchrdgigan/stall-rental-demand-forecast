@@ -15,7 +15,7 @@ Show Tenant
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{route('tenant.index')}}">Tenant</a></li>
+                <li class="breadcrumb-item"><a href="{{route('tenant.index')}}">Tenants</a></li>
                 <li class="breadcrumb-item active"><a>Show Tenant</a></li>
             </ol>
         </div>
@@ -26,17 +26,17 @@ Show Tenant
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <h3 class="text-center bg-primary text-white rounded-top p-2">Tenants Details</h3>
-                        <div class="text-center p-3">
-                            Tenants : <b>{{ $show_tenant->fullname }}</b> <br>
-                            Email Address : <b>{{ $show_tenant->email }}</b> <br>
-                            Contact : <b>{{ $show_tenant->contact }}</b> <br>
-                            Rental Rate : <b>{{$show_tenant->phase->priceformat ?? 'N/A'}}</b> <br>
-                            Total Paid : <br>
+                        <div class="p-3">
+                            Tenants : <b class="float-end">{{ $show_tenant->fullname }}</b> <br>
+                            Email Address : <b class="float-end">{{ $show_tenant->email }}</b> <br>
+                            Contact : <b class="float-end">{{ $show_tenant->contact }}</b> <br>
+                            Rental Rate : <b class="float-end">{{ $show_tenant->phase->priceformat ?? 'N/A' }}</b> <br>
+                            Total Paid : <b class="float-end">{{ $show_tenant->payment->sum('amount') ?? 'N/A' }}</b><br>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="card">
                             <h3 class="text-center bg-primary text-white rounded-top p-2">Payment list</h3>
                             <div class="table-responsive p-3">
@@ -48,7 +48,12 @@ Show Tenant
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @foreach($show_tenant->payment as $data)
+                                        <tr>
+                                            <td>{{ Carbon\Carbon::parse($data->created_at)->format('M d, Y') }}</td>
+                                            <td>{{ $data->amount }}</td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>

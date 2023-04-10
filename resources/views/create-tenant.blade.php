@@ -11,7 +11,7 @@ Create New Tenant
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{route('tenant.index')}}">Tenant</a></li>
+                <li class="breadcrumb-item"><a href="{{route('tenant.index')}}">Tenants</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('tenant.create')}}">Create New Tenant</a></li>
             </ol>
         </div>

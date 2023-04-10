@@ -28,4 +28,8 @@ class Tenant extends Model
     public function phase() {
         return $this->belongsTo(Phase::class);
     }
+
+    public function payment() {
+        return $this->hasMany(Payment::class);
+    }
 }

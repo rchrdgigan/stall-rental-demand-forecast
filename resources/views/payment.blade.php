@@ -26,12 +26,14 @@ Payments
                         <h4 class="card-title">List of Payments</h4>
                         <a href="{{route('payment.create')}}" class="btn btn-primary">Add New</a>
                     </div>
+                    <div class="col-md-12 p-2">
+                        @include('message')
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Date</th>
                                         <th>Tenants Name</th>
                                         <th>Amount</th>
@@ -39,23 +41,21 @@ Payments
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($payment as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Mar 23, 2023</td>
-                                        <td>Tenant 1</td>
-                                        <td>5,000.00</td>
+                                        <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
+                                        <td>{{$data->tenant->fullname}}</td>
+                                        <td>{{$data->amount}}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="{{route('payment.edit', $data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                             </div>												
                                         </td>	
                                     </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>#</th>
                                         <th>Date</th>
                                         <th>Tenants Name</th>
                                         <th>Amount</th>
