@@ -14,7 +14,7 @@ Payments
         <div class="row page-titles">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="{{route('payment')}}">Payments</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('payment.index')}}">Payments</a></li>
             </ol>
         </div>
 
@@ -24,7 +24,7 @@ Payments
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">List of Payments</h4>
-                        <a href="" class="btn btn-primary">Add New</a>
+                        <a href="{{route('payment.create')}}" class="btn btn-primary">Add New</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

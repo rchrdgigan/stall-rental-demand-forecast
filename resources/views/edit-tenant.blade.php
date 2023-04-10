@@ -26,7 +26,9 @@ Edit Tenant
                             <div class="card-header">
                                 <h4 class="card-title">Edit Tenants Info</h4>
                             </div>
-                           
+                            <div class="col-md-12 p-2">
+                                @include('message')
+                            </div>
                             <div class="col-md-12 pt-2">
 
                                 <div class="mb-3 row">
@@ -122,7 +124,7 @@ Edit Tenant
                                         <div class="col-lg-12">
                                             <select name="stall_no" id="stall_no" class="form-control">
                                                 @foreach($phase as $data)
-                                                <option {{($edit_tenant->phase_id == $data->id)? 'selected' : ''}} value="{{$data->id}}">{{$data->stall_no}}</option>
+                                                <option {{($edit_tenant->phase_id == $data->id)? 'selected' : ''}} value="{{$data->id}}">{{$data->stall_no}} {{($edit_tenant->phase_id == $data->id)? '(current)' : ($data->status == 1? '(occupied)':'(available)')}}</option>
                                                 @endforeach
                                             </select>
                                             @error('stall_no')

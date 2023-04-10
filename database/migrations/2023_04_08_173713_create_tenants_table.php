@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('contact');
             $table->string('date_reg');
-            $table->unsignedBigInteger('phase_id');
+            $table->tinyInteger('status')
+                ->default(1)
+                ->comment('1 = active, 0 = inactive');
+            $table->unsignedBigInteger('phase_id')->nullable();
             $table->foreign('phase_id')->references('id')->on('phases')->onDelete('cascade');
             $table->timestamps();
         });

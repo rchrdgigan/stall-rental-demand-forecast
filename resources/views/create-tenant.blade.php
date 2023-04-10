@@ -25,7 +25,9 @@ Create New Tenant
                             <div class="card-header">
                                 <h4 class="card-title">Tenants Form</h4>
                             </div>
-                           
+                            <div class="col-md-12 p-2">
+                                @include('message')
+                            </div>
                             <div class="col-md-12 pt-2">
 
                                 <div class="mb-3 row">

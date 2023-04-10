@@ -46,11 +46,11 @@ Tenants
                                     <tr>
                                         <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
                                         <td>{{$data->fullname}}</td>
-                                        <td>{{$data->phase->stall_no}}</td>
-                                        <td>{{$data->phase->priceformat}}</td>
+                                        <td>{{$data->phase->stall_no ?? 'N/A'}}</td>
+                                        <td>{{$data->phase->priceformat ?? 'N/A'}}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
+                                                <a href="{{route('tenant.show', $data->id)}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
                                                 <a href="{{route('tenant.edit', $data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                                 <a  data-bs-toggle="modal" id="{{$data->id}}" data-bs-target="#delModal" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                             </div>												

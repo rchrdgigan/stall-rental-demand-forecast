@@ -23,7 +23,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('create-payment');
     }
 
     /**
@@ -34,7 +34,25 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'lname' => 'required',
+            'fname' => 'required',
+        ]);
+        $phase = Phase::findOrFail($request->stall_no);
+       
+        $tenant = Tenant::create([
+            'lname' => $request->lname,
+            'fname' => $request->fname,
+            'mname' => $request->mname,
+            'email' => $request->email,
+            'contact' => $request->contact,
+            'phase_id' => $request->stall_no,
+            'date_reg' => $request->date_reg,
+        ]);
+        $tenant->phase()->update([
+            'status' => true,
+        ]);
+        return redirect()->route('tenant.index')->with("success","Successfully Added!");
     }
 
     /**

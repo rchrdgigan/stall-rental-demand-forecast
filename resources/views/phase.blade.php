@@ -51,11 +51,17 @@ Phase
                                             <small>Price : <b>{{$data->priceformat}}</b></small><br>
 
                                         </td>
-                                        <td><span class="bg-danger text-white rounded p-1">Unoccupied</span></td>
+                                        <td>
+                                            <span class="{{($data->status == 1) ? 'bg-success':'bg-danger'}} text-white rounded p-1">{{($data->status == 1) ? 'Occupied':'Unoccupied'}}</span>
+                                            @if($data->status == 1)
+                                            <a  data-bs-toggle="modal" id="{{$data->id}}" data-bs-target="#updateModal" class="btn btn-secondary shadow btn-xs sharp me-1"><i class="fa fa-retweet"></i></a>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{route('phase.edit', $data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                <a  data-bs-toggle="modal" id="{{$data->id}}" data-bs-target="#delModal" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a  data-bs-toggle="modal" id="{{$data->id}}" data-bs-target="#delModal" class="btn btn-danger shadow btn-xs sharp me-1"><i class="fa fa-trash"></i></a>
+                                                
                                             </div>												
                                         </td>	
                                     </tr>
@@ -100,6 +106,28 @@ Phase
     </div>
   </div>
 </div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="form-validation">
+            <form action="{{route('phase.status')}}" method="post" id="status_frm">
+                @csrf
+                @method('PUT')
+                <div class="modal-body text-center">
+                    <input type="hidden" name="id">
+                    <i class="fa fa-question-circle fa-6x text-secondary" aria-hidden="true"></i>
+                    <p class="fs-4">Are you sure to change status or unoccupied this stall?</p>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-info">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('script')
@@ -122,6 +150,12 @@ Phase
         var opener=e.relatedTarget;
         var id=$(opener).attr('id');
         $('#delete_frm').find('[name="id"]').val(id);
+    });
+
+    $('#updateModal').on('show.bs.modal', function (e) {
+        var opener=e.relatedTarget;
+        var id=$(opener).attr('id');
+        $('#status_frm').find('[name="id"]').val(id);
     });
 </script>
 @endpush

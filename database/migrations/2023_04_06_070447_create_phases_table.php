@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('section_id');
             $table->string('description');
             $table->string('price');
+            $table->tinyInteger('status')
+                ->default(0)
+                ->comment('1 = occupied, 0 = unoccupied');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });

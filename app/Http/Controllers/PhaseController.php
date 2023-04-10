@@ -44,14 +44,12 @@ class PhaseController extends Controller
             'description' => 'required',
             'price' => 'required',
         ]);
-
         Phase::create([
             'stall_no' => $request->stall_no,
             'section_id' => $request->cat_id,
             'description' => $request->description,
             'price' => $request->price,
         ]);
-
         return redirect()->route('phase.index')->with("success","Successfully Added!");
     }
 
@@ -83,15 +81,31 @@ class PhaseController extends Controller
             'description' => 'required',
             'price' => 'required',
         ]);
-
         $phase = Phase::findOrFail($id);
         $phase->stall_no = $request->stall_no;
         $phase->section_id = $request->cat_id;
         $phase->description = $request->description;
         $phase->price = $request->price;
         $phase->update();
-
         return redirect()->route('phase.index')->with("success","Successfully Updated!");
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function status(Request $request)
+    {
+        $phase = Phase::with('tenant')->findOrFail($request->id);
+        $phase->status = false;
+        $phase->update();
+        $phase->tenant()->update([
+            'phase_id' => null,
+        ]);
+        return redirect()->route('phase.index')->with("success","Status Succesfully Updated!");
     }
 
     /**

@@ -15,6 +15,7 @@
     <link href="{{asset('vendor/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
 	<link rel="stylesheet" href="{{asset('vendor/nouislider/nouislider.min.css')}}">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body class="vh-100">
@@ -51,6 +52,6 @@
 	<script src="{{asset('js/dashboard/dashboard-1.js')}}"></script>
     <script src="{{asset('js/custom.min.js')}}"></script>
 	<script src="{{asset('js/dlabnav-init.js')}}"></script>
-
+    @livewireScripts
 </body>
 </html>

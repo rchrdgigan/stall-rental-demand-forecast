@@ -26,7 +26,7 @@ class TenantController extends Controller
      */
     public function create()
     {
-        $phase = Phase::get();
+        $phase = Phase::where('status',false)->get();
         return view('create-tenant', compact('phase'));
     }
 
@@ -47,18 +47,24 @@ class TenantController extends Controller
             'stall_no' => 'required',
             'date_reg' => 'required',
         ]);
-
-        Tenant::create([
-            'lname' => $request->lname,
-            'fname' => $request->fname,
-            'mname' => $request->mname,
-            'email' => $request->email,
-            'contact' => $request->contact,
-            'phase_id' => $request->stall_no,
-            'date_reg' => $request->date_reg,
-        ]);
-
-        return redirect()->route('tenant.index')->with("success","Successfully Added!");
+        $phase = Phase::findOrFail($request->stall_no);
+        if($phase->status == 1){
+            return back()->with("error","This stall is already occupied!");
+        }else{
+            $tenant = Tenant::create([
+                'lname' => $request->lname,
+                'fname' => $request->fname,
+                'mname' => $request->mname,
+                'email' => $request->email,
+                'contact' => $request->contact,
+                'phase_id' => $request->stall_no,
+                'date_reg' => $request->date_reg,
+            ]);
+            $tenant->phase()->update([
+                'status' => true,
+            ]);
+            return redirect()->route('tenant.index')->with("success","Successfully Added!");
+        }
     }
 
     /**
@@ -69,7 +75,9 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_tenant= Tenant::findOrFail($id);
+        $phase = Phase::get();
+        return view('show-tenant',compact('phase','show_tenant'));
     }
 
     /**
@@ -103,18 +111,43 @@ class TenantController extends Controller
             'stall_no' => 'required',
             'date_reg' => 'required',
         ]);
-
         $tenant = Tenant::findOrFail($id);
-        $tenant->lname = $request->lname;
-        $tenant->fname = $request->fname;
-        $tenant->mname = $request->mname;
-        $tenant->email = $request->email;
-        $tenant->contact = $request->contact;
-        $tenant->phase_id = $request->stall_no;
-        $tenant->date_reg = $request->date_reg;
-        $tenant->update();
-
-        return redirect()->route('tenant.index')->with("success","Successfully Updated!");
+        $phase = Phase::findOrFail($request->stall_no);
+        if($request->stall_no == $tenant->phase_id || $tenant->phase_id == null){
+            $tenant->lname = $request->lname;
+            $tenant->fname = $request->fname;
+            $tenant->mname = $request->mname;
+            $tenant->email = $request->email;
+            $tenant->contact = $request->contact;
+            $tenant->phase_id = $request->stall_no;
+            $tenant->date_reg = $request->date_reg;
+            $tenant->update();
+            $tenant->phase()->update([
+                'status' => true,
+            ]);
+            return redirect()->route('tenant.index')->with("success","Successfully Updated!");
+        }else{
+            if($phase->status == 1){
+                return back()->with("error","This stall is already occupied!");
+            }else{
+                $past_phase = Phase::findOrFail($tenant->phase_id);
+                $past_phase->status = false;
+                $past_phase->update();
+                $tenant->lname = $request->lname;
+                $tenant->fname = $request->fname;
+                $tenant->mname = $request->mname;
+                $tenant->email = $request->email;
+                $tenant->contact = $request->contact;
+                $tenant->phase_id = $request->stall_no;
+                $tenant->date_reg = $request->date_reg;
+                $tenant->update();
+                $tenant->phase()->update([
+                    'status' => true,
+                ]);
+                return redirect()->route('tenant.index')->with("success","Successfully Updated!");
+            }
+        }
+       
     }
 
     /**
