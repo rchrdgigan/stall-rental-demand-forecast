@@ -78,7 +78,17 @@ Route::middleware('auth')->group(function () {
         Route::put('/update/{id}', 'update')->name('update');
     });
 
-    Route::get('/report', [ReportController::class, 'index'])->name('report');
+    Route::controller(ReportController::class)
+    ->as('report.')
+    ->prefix('report')
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/daily', 'daily')->name('daily');
+        Route::get('/balance', 'balance')->name('balance');
+        Route::get('/daily/print', 'dailyPrint')->name('daily.print');
+        Route::get('/balance/print', 'balancePrint')->name('balance.print');
+    });
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');

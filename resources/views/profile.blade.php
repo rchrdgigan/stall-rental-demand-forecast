@@ -107,11 +107,11 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,84,1) 0%, rgba(
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-lg-12 col-form-label" for="validationCustom01">
+                        <label class="col-lg-12 col-form-label" for="validationCustom02">
                             Admin Email
                         </label>
                         <div class="col-lg-12">
-                            <input type="text" name="email" class="form-control" id="validationCustom01" placeholder="Enter your eamil.." value="{{auth()->user()->email}}" required="">
+                            <input type="text" name="email" class="form-control" id="validationCustom02" placeholder="Enter your eamil.." value="{{auth()->user()->email}}" required="">
                             <div class="invalid-feedback">
                                 Please enter your email.
                             </div>
@@ -161,22 +161,22 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,84,1) 0%, rgba(
                         @enderror
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-lg-12 col-form-label" for="validationCustom01">
+                        <label class="col-lg-12 col-form-label" for="validationCustom02">
                             New Password
                         </label>
                         <div class="col-lg-12">
-                            <input type="password" name="new_password" class="form-control" id="validationCustom01" placeholder="Enter your new password.." required="">
+                            <input type="password" name="new_password" class="form-control" id="validationCustom02" placeholder="Enter your new password.." required="">
                             <div class="invalid-feedback">
                                 Please enter your new password.
                             </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-lg-12 col-form-label" for="validationCustom01">
+                        <label class="col-lg-12 col-form-label" for="validationCustom03">
                             Confirmation Password
                         </label>
                         <div class="col-lg-12">
-                            <input type="password" name="new_password_confirmation" class="form-control" id="validationCustom01" placeholder="Enter your new password.." required="">
+                            <input type="password" name="new_password_confirmation" class="form-control" id="validationCustom03" placeholder="Enter your new password.." required="">
                             <div class="invalid-feedback">
                                 Please enter your new password.
                             </div>

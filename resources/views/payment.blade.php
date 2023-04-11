@@ -45,7 +45,7 @@ Payments
                                     <tr>
                                         <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
                                         <td>{{$data->tenant->fullname}}</td>
-                                        <td>{{$data->amount}}</td>
+                                        <td>₱ {{number_format($data->amount)}}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{route('payment.edit', $data->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>

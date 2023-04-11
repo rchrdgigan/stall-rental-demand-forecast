@@ -19,7 +19,7 @@ Dashboard
                             
                         </div>
                         <div>
-                            <h2 class="text-white invoice-num">0</h2>
+                            <h2 class="text-white invoice-num">{{$tenants}}</h2>
                             <span class="text-white fs-18">Total of Tenants</span>
                         </div>
 
@@ -48,7 +48,7 @@ Dashboard
                             
                         </div>
                         <div>
-                            <h2 class="text-white invoice-num">0</h2>
+                            <h2 class="text-white invoice-num">{{$paid_this_mo}}</h2>
                             <span class="text-white fs-18">Total paid this month</span>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ Dashboard
                         
                         </div>
                         <div>
-                            <h2 class="text-white invoice-num">0</h2>
+                            <h2 class="text-white invoice-num">{{$stalls}}</h2>
                             <span class="text-white fs-18">Total of Stalls</span>
                         </div>
                     </div>
@@ -94,18 +94,33 @@ Dashboard
         <div class="row">
             <div class="col-xl-12 col-xxl-12">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            
-                            <div class="d-sm-flex d-block">
-                                <ul class="card-list d-flex mt-sm-0 mt-3">
-                                    <li class="me-3"><span class="bg-success circle"></span>Rent</li>
-                                    <li><span class="bg-danger circle"></span>Stall</li>
-                                </ul>
-                            </div>
-                            <div id="chartBar2" class="bar-chart"></div>
+                    <div class="card-header">
+                        <h4 class="card-title">Rental Forcast Report</h4>
+                        <div class="col-6">
+                            <form method="GET">
+                                <div class="row">
+                                    <label class="col-md-5 mt-2 col-form-label text-md-end">Year of : </label>
+                                    <div class="col-md-4">
+                                        <select name="filter" class="form-control">
+                                            @for($i = 0; $i <= 6; $i++)
+                                                @if(isset($_GET['filter']))
+                                                <option {{($_GET['filter'] == Carbon\Carbon::now()->addYear(-$i)->format('Y')) ? 'selected' : ''}} value="{{Carbon\Carbon::now()->addYear(-$i)->format('Y')}}">{{Carbon\Carbon::now()->addYear(-$i)->format('Y')}}</option>
+                                                @else
+                                                <option value="{{Carbon\Carbon::now()->addYear(-$i)->format('Y')}}">{{Carbon\Carbon::now()->addYear(-$i)->format('Y')}}</option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mt-2">
+                                        <button class="btn btn-sm btn-primary">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </form>
 
-                        </div>
+						</div>	
+                    </div>
+                    <div class="card-body">
+                    {!! $chart->container() !!}
                     </div>
                    
                 </div>
@@ -116,3 +131,7 @@ Dashboard
     </div>
 </div>
 @endsection
+
+@push('script')
+{!! $chart->script() !!}
+@endpush

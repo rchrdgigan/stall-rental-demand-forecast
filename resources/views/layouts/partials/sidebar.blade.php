@@ -79,7 +79,7 @@
                     <span class="nav-text">Tenants</span>
                 </a>
             </li>
-            <li>
+            <li class="{{(request()->routeIs('payment.*'))?'mm-active':''}}">
                 <a class="ai-icon" href="{{route('payment.index')}}" aria-expanded="false">
                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -95,8 +95,8 @@
                     <span class="nav-text">Payments</span>
                 </a>
             </li>
-            <li>
-                <a class="ai-icon" href="{{route('report')}}" aria-expanded="false">
+            <li class="{{(request()->routeIs('report.*'))?'mm-active':''}}">
+                <a class="ai-icon" href="{{route('report.index')}}" aria-expanded="false">
                     <span class="svg-icon svg-icon-primary svg-icon-2x">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
