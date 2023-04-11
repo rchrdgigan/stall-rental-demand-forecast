@@ -95,7 +95,7 @@ Dashboard
             <div class="col-xl-12 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Rental Forcast Report</h4>
+                        <h4 class="card-title">Rental Forecast Report</h4>
                         <div class="col-6">
                             <form method="GET">
                                 <div class="row">

@@ -88,9 +88,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/daily/print', 'dailyPrint')->name('daily.print');
         Route::get('/balance/print', 'balancePrint')->name('balance.print');
     });
-
+    Route::get('/demand/forecast', [HomeController::class, 'demandForecast'])->name('demand.forecast');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 });

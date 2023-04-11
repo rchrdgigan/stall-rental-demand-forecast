@@ -25,7 +25,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generate Demand<i class="las la-signal ms-3 scale5"></i></a>
+                        <a href="{{route('demand.forecast')}}" class="btn btn-primary d-sm-inline-block d-none">Generate Demand<i class="las la-signal ms-3 scale5"></i></a>
                     </li>
                 </ul>
             </div>
