@@ -1,5 +1,5 @@
 <div class="nav-header">
-    <a href="index.html" class="brand-logo">
+    <a href="{{route('home')}}" class="brand-logo">
         <img src="{{asset('images/Logo.jpg')}}" alt="" height="70">
     </a>
     <div class="nav-control">
@@ -19,10 +19,12 @@
                 </div>
                 <ul class="navbar-nav header-right">
                     <li class="nav-item">
-                        <div class="input-group search-area">
-                            <input type="text" class="form-control" placeholder="Search here...">
-                            <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-                        </div>
+                        <form action="{{route('search')}}?search={{(isset($_GET['search']))? $_GET['search']:''}}" method="GET">
+                            <div class="input-group search-area">
+                                <input type="text" class="form-control" name="search" value="{{(isset($_GET['search']))? $_GET['search']:''}}" placeholder="Search here...">
+                                <span class="input-group-text"><a><i class="flaticon-381-search-2"></i></a></span>
+                            </div>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a href="{{route('demand.forecast')}}" class="btn btn-primary d-sm-inline-block d-none">Generate Demand<i class="las la-signal ms-3 scale5"></i></a>

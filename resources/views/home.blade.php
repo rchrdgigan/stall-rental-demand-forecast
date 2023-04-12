@@ -24,7 +24,7 @@ Dashboard
                         </div>
 
                     </div>
-                    <button class="btn btn-warning">
+                    <a href="{{route('tenant.index')}}" class="btn btn-warning">
                     <span>View List</span>
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo3/dist/../src/media/svg/icons/Code/Right-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -33,7 +33,7 @@ Dashboard
                             <path d="M7.96323356,15.1775211 C7.62849853,15.5122561 7.08578582,15.5122561 6.75105079,15.1775211 C6.41631576,14.842786 6.41631576,14.3000733 6.75105079,13.9653383 L11.8939067,8.82248234 C12.2184029,8.49798619 12.7409054,8.4866328 13.0791905,8.79672747 L18.2220465,13.5110121 C18.5710056,13.8308912 18.5945795,14.3730917 18.2747004,14.7220508 C17.9548212,15.0710098 17.4126207,15.0945838 17.0636617,14.7747046 L12.5257773,10.6149773 L7.96323356,15.1775211 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.500001, 12.000001) rotate(-270.000000) translate(-12.500001, -12.000001) "/>
                         </g>
                     </svg><!--end::Svg Icon--></span>
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -52,7 +52,7 @@ Dashboard
                             <span class="text-white fs-18">Total paid this month</span>
                         </div>
                     </div>
-                    <button class="btn btn-success">
+                    <a href="{{route('payment.index')}}" class="btn btn-success">
                     <span>View List</span>
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo3/dist/../src/media/svg/icons/Code/Right-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -61,7 +61,7 @@ Dashboard
                             <path d="M7.96323356,15.1775211 C7.62849853,15.5122561 7.08578582,15.5122561 6.75105079,15.1775211 C6.41631576,14.842786 6.41631576,14.3000733 6.75105079,13.9653383 L11.8939067,8.82248234 C12.2184029,8.49798619 12.7409054,8.4866328 13.0791905,8.79672747 L18.2220465,13.5110121 C18.5710056,13.8308912 18.5945795,14.3730917 18.2747004,14.7220508 C17.9548212,15.0710098 17.4126207,15.0945838 17.0636617,14.7747046 L12.5257773,10.6149773 L7.96323356,15.1775211 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.500001, 12.000001) rotate(-270.000000) translate(-12.500001, -12.000001) "/>
                         </g>
                     </svg><!--end::Svg Icon--></span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="col-xl-4 col-xxl-4 col-sm-6">
@@ -78,7 +78,7 @@ Dashboard
                             <span class="text-white fs-18">Total of Stalls</span>
                         </div>
                     </div>
-                    <button class="btn btn-secondary">
+                    <a href="{{route('phase.index')}}" class="btn btn-secondary">
                     <span>View List</span>
                     <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo3/dist/../src/media/svg/icons/Code/Right-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -87,7 +87,7 @@ Dashboard
                             <path d="M7.96323356,15.1775211 C7.62849853,15.5122561 7.08578582,15.5122561 6.75105079,15.1775211 C6.41631576,14.842786 6.41631576,14.3000733 6.75105079,13.9653383 L11.8939067,8.82248234 C12.2184029,8.49798619 12.7409054,8.4866328 13.0791905,8.79672747 L18.2220465,13.5110121 C18.5710056,13.8308912 18.5945795,14.3730917 18.2747004,14.7220508 C17.9548212,15.0710098 17.4126207,15.0945838 17.0636617,14.7747046 L12.5257773,10.6149773 L7.96323356,15.1775211 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.500001, 12.000001) rotate(-270.000000) translate(-12.500001, -12.000001) "/>
                         </g>
                     </svg><!--end::Svg Icon--></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@ Dashboard
                             <form method="GET">
                                 <div class="row">
                                     <label class="col-md-5 mt-2 col-form-label text-md-end">Year of : </label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mt-2">
                                         <select name="filter" class="form-control">
                                             @for($i = 0; $i <= 6; $i++)
                                                 @if(isset($_GET['filter']))

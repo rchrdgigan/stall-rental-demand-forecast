@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Tenant,Payment,Phase};
+use App\Models\{Tenant,Payment,Phase,Section};
 use Carbon\Carbon;
 use App\Charts\RentalChart;
 use DB;
@@ -122,18 +122,18 @@ class HomeController extends Controller
             $query->where('created_at', 'like', '%'.$current_yr_dev.'%');
         }])->latest('id')->count();
        
-        $unoccupied_jan = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_jan.'%')->count();
-        $unoccupied_feb = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_feb.'%')->count();
-        $unoccupied_mar = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_mar.'%')->count();
-        $unoccupied_apr = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_apr.'%')->count();
-        $unoccupied_may = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_may.'%')->count();
-        $unoccupied_jun = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_jun.'%')->count();
-        $unoccupied_jul = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_jul.'%')->count();
-        $unoccupied_aug = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_aug.'%')->count();
-        $unoccupied_sept = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_sept.'%')->count();
-        $unoccupied_oct = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_oct.'%')->count();
-        $unoccupied_nov = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_nov.'%')->count();
-        $unoccupied_dev = Phase::where('status',false)->where('created_at','like', '%'.$current_yr_dev.'%')->count();
+        $unoccupied_jan = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_jan.'%')->count();
+        $unoccupied_feb = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_feb.'%')->count();
+        $unoccupied_mar = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_mar.'%')->count();
+        $unoccupied_apr = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_apr.'%')->count();
+        $unoccupied_may = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_may.'%')->count();
+        $unoccupied_jun = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_jun.'%')->count();
+        $unoccupied_jul = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_jul.'%')->count();
+        $unoccupied_aug = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_aug.'%')->count();
+        $unoccupied_sept = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_sept.'%')->count();
+        $unoccupied_oct = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_oct.'%')->count();
+        $unoccupied_nov = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_nov.'%')->count();
+        $unoccupied_dev = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_dev.'%')->count();
 
         $chart->dataset('Occupied', 'bar', [$occupied_jan, $occupied_feb, $occupied_mar, $occupied_apr, $occupied_may, $occupied_jun, $occupied_jul, $occupied_aug, $occupied_sept, $occupied_oct, $occupied_nov, $occupied_dev]);
         $chart->dataset('Unoccupied', 'line', [$unoccupied_jan, $unoccupied_feb, $unoccupied_mar, $unoccupied_apr, $unoccupied_may, $unoccupied_jun, $unoccupied_jul, $unoccupied_aug, $unoccupied_sept, $unoccupied_oct, $unoccupied_nov, $unoccupied_dev]);
@@ -256,7 +256,7 @@ class HomeController extends Controller
         $forecast_nov = array_sum($occupied_nov) / 5; 
         $forecast_dev = array_sum($occupied_dev) / 5; 
         $chart = new RentalChart;
-        $chart->dataset('Predict Occupied this year '. $current_yr, 'line', [$forecast_jan, $forecast_feb, $forecast_mar, $forecast_apr, $forecast_may, $forecast_jun, $forecast_jul, $forecast_aug, $forecast_sept, $forecast_oct, $forecast_nov, $forecast_dev]);
+        $chart->dataset('Predict stalls occupy this year '. $current_yr, 'line', [$forecast_jan, $forecast_feb, $forecast_mar, $forecast_apr, $forecast_may, $forecast_jun, $forecast_jul, $forecast_aug, $forecast_sept, $forecast_oct, $forecast_nov, $forecast_dev]);
         
         $yr_now = Carbon::parse(Now())->format('Y');
         $x = 1;
@@ -344,7 +344,7 @@ class HomeController extends Controller
             $query->where('created_at', 'like', '%'.$yr_now_dev.'%');
         }])->latest('id')->count();
         
-        $chart->dataset('Past Occupied in year '. $yr_now - 1, 'line', [$occupied_janx, $occupied_febx, $occupied_marx, $occupied_aprx, $occupied_mayx, $occupied_junx, $occupied_julx, $occupied_augx, $occupied_septx, $occupied_octx, $occupied_novx, $occupied_devx]);
+        $chart->dataset('Last year occupied stalls', 'line', [$occupied_janx, $occupied_febx, $occupied_marx, $occupied_aprx, $occupied_mayx, $occupied_junx, $occupied_julx, $occupied_augx, $occupied_septx, $occupied_octx, $occupied_novx, $occupied_devx]);
         $chart->labels([
             "Jan",
             "Feb",
@@ -363,5 +363,53 @@ class HomeController extends Controller
         return view('demand-forecast',[
             'chart' => $chart,
         ]);
+    }
+
+    public function search(){
+
+        if(request('search')){
+            $seaching = request('search');
+
+            $payment = Payment::whereHas('tenant', function ($query) use ($seaching){
+                $query->where('lname', 'like', '%'.$seaching.'%')
+                ->orWhere('fname', 'like', '%'.$seaching.'%')
+                ->orWhere('mname', 'like', '%'.$seaching.'%');
+            })->with(['tenant' => function($query) use ($seaching){
+                $query->where('lname', 'like', '%'.$seaching.'%')
+                ->orWhere('fname', 'like', '%'.$seaching.'%')
+                ->orWhere('mname', 'like', '%'.$seaching.'%');
+            }])->latest('id')->get();
+            
+            $section = Section::where('section_name', $seaching)->first();
+            $phase = Phase::where('section_id',(isset($section))? $section->id : '')
+                ->orWhere('stall_no', 'like', '%'.$seaching.'%')
+                ->orWhere('description', 'like', '%'.$seaching.'%')
+                ->whereHas('tenant', function ($query) use ($seaching){
+                $query->where('lname', 'like', '%'.$seaching.'%')
+                ->orWhere('fname', 'like', '%'.$seaching.'%')
+                ->orWhere('mname', 'like', '%'.$seaching.'%');
+            })->with(['tenant' => function($query) use ($seaching){
+                $query->where('lname', 'like', '%'.$seaching.'%')
+                ->orWhere('fname', 'like', '%'.$seaching.'%')
+                ->orWhere('mname', 'like', '%'.$seaching.'%');
+            }])->latest('id')->with('section')->get();
+
+
+            $tenants = Tenant::where('lname', 'like', '%'.$seaching.'%')
+            ->orWhere('fname', 'like', '%'.$seaching.'%')
+            ->orWhere('mname', 'like', '%'.$seaching.'%')
+            ->whereHas('phase', function ($query) use ($seaching){
+                $query->where('stall_no', 'like', '%'.$seaching.'%')
+                ->orWhere('description', 'like', '%'.$seaching.'%');
+            })->with(['phase' => function($query) use ($seaching){
+                $query->where('stall_no', 'like', '%'.$seaching.'%')
+                ->orWhere('description', 'like', '%'.$seaching.'%');
+            }])->latest('id')->with('phase')->get();
+
+            $result_count = $phase->count() + $tenants->count() + $payment->count();
+            return view('search',['phase'=>$phase,'tenants'=>$tenants,'payment'=>$payment, 'result_count'=>$result_count]);
+        }else{
+            return view('search',['message'=>'No Result Found!','result_count'=>'0']);
+        }
     }
 }

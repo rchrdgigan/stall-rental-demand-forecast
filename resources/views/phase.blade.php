@@ -43,7 +43,7 @@ Phase
                                 <tbody>
                                     @foreach($phase as $data)
                                     <tr>
-                                        <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
+                                        <td>{{Carbon\Carbon::parse($data->updated_at)->format('M d, Y')}}</td>
                                         <td>
                                             <small>Stall # : <b>{{$data->stall_no}}</b></small><br>
                                             <small>Section : <b>{{$data->section->section_name}}</b></small><br>
