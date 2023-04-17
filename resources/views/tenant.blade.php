@@ -34,7 +34,7 @@ Tenants
                             <table id="table_id" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Date Registed</th>
                                         <th>Tenants Name</th>
                                         <th>Stall Rented</th>
                                         <th>Excess Rate</th>
@@ -44,7 +44,7 @@ Tenants
                                 <tbody>
                                     @foreach($tenants as $data)
                                     <tr>
-                                        <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
+                                        <td>{{Carbon\Carbon::parse($data->date_reg)->format('M d, Y')}}</td>
                                         <td>{{$data->fullname}}</td>
                                         <td>{{$data->phase->stall_no ?? 'N/A'}}</td>
                                         <td>{{$data->phase->priceformat ?? 'N/A'}}</td>
@@ -60,7 +60,7 @@ Tenants
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Date Registed</th>
                                         <th>Tenants Name</th>
                                         <th>Stall Rented</th>
                                         <th>Excess Rate</th>

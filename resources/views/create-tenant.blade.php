@@ -68,7 +68,7 @@ Create New Tenant
                                         Middle Name
                                         </label>
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control" id="mname" name="mname"  value="{{  old('mname') }}" placeholder="Enter a middle name.." required="">
+                                            <input type="text" class="form-control" id="mname" name="mname"  value="{{  old('mname') }}" placeholder="Enter a middle name..">
                                             <div class="invalid-feedback">
                                                 Please enter a middle name.
                                             </div>
@@ -87,7 +87,7 @@ Create New Tenant
                                         Email Address
                                         </label>
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control" id="email" name="email"  value="{{  old('email') }}"  placeholder="Enter a email address.." required="">
+                                            <input type="text" class="form-control" id="email" name="email"  value="{{  old('email') }}"  placeholder="Enter a email address..">
                                             <div class="invalid-feedback">
                                                 Please enter a email address.
                                             </div>
@@ -133,9 +133,9 @@ Create New Tenant
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <label class="col-lg-12 col-form-label" for="dateR">
-                                        Date Register
+                                        Date Registered From
                                         </label>
                                         <div class="col-lg-12">
                                             <input type="date" class="form-control" id="dateR" name="date_reg"  value="{{  old('date_reg') }}"  placeholder="Enter a date registered.." required="">
@@ -143,6 +143,22 @@ Create New Tenant
                                                 Please select a date.
                                             </div>
                                             @error('date_reg')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="col-lg-12 col-form-label" for="dateU">
+                                        Date Registered Until
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="date" class="form-control" id="dateU" name="date_until"  value="{{  old('date_until') }}"  placeholder="Enter a date until.." required="">
+                                            <div class="invalid-feedback">
+                                                Please select a date.
+                                            </div>
+                                            @error('date_until')
                                                 <small class="text-danger" role="alert">
                                                     {{ $message }}
                                                 </small>

@@ -34,7 +34,7 @@ Phase
                             <table id="table_id" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Date</th>
                                         <th>Phase</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -43,7 +43,7 @@ Phase
                                 <tbody>
                                     @foreach($phase as $data)
                                     <tr>
-                                        <td>{{Carbon\Carbon::parse($data->updated_at)->format('M d, Y')}}</td>
+                                        <td>{{Carbon\Carbon::parse($data->date_year)->format('M d, Y')}}</td>
                                         <td>
                                             <small>Stall # : <b>{{$data->stall_no}}</b></small><br>
                                             <small>Section : <b>{{$data->section->section_name}}</b></small><br>
@@ -69,7 +69,7 @@ Phase
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Date</th>
                                         <th>Phase</th>
                                         <th>Status</th>
                                         <th>Action</th>

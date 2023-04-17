@@ -49,77 +49,77 @@ class HomeController extends Controller
         $current_yr_dev = Carbon::parse($current_yr.'-12')->format('Y-m');
 
         $chart = new RentalChart;
-
-        $occupied_jan = Tenant::whereHas('payment', function ($query) use ($current_yr_jan){
-            $query->where('created_at', 'like', '%'.$current_yr_jan.'%');
-        })->with(['payment' => function($query) use ($current_yr_jan){
-            $query->where('created_at', 'like', '%'.$current_yr_jan.'%');
+        $status = true;
+        $occupied_jan = Tenant::where('date_until', 'like', '%'.$current_yr_jan.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_feb = Tenant::whereHas('payment', function ($query) use ($current_yr_feb){
-            $query->where('created_at', 'like', '%'.$current_yr_feb.'%');
-        })->with(['payment' => function($query) use ($current_yr_feb){
-            $query->where('created_at', 'like', '%'.$current_yr_feb.'%');
+        $occupied_feb = Tenant::where('date_until', 'like', '%'.$current_yr_feb.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_mar = Tenant::whereHas('payment', function ($query) use ($current_yr_mar){
-            $query->where('created_at', 'like', '%'.$current_yr_mar.'%');
-        })->with(['payment' => function($query) use ($current_yr_mar){
-            $query->where('created_at', 'like', '%'.$current_yr_mar.'%');
+        $occupied_mar = Tenant::where('date_until', 'like', '%'.$current_yr_mar.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_apr = Tenant::whereHas('payment', function ($query) use ($current_yr_apr){
-            $query->where('created_at', 'like', '%'.$current_yr_apr.'%');
-        })->with(['payment' => function($query) use ($current_yr_apr){
-            $query->where('created_at', 'like', '%'.$current_yr_apr.'%');
+        $occupied_apr = Tenant::where('date_until', 'like', '%'.$current_yr_apr.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_may = Tenant::whereHas('payment', function ($query) use ($current_yr_may){
-            $query->where('created_at', 'like', '%'.$current_yr_may.'%');
-        })->with(['payment' => function($query) use ($current_yr_may){
-            $query->where('created_at', 'like', '%'.$current_yr_may.'%');
+        $occupied_may = Tenant::where('date_until', 'like', '%'.$current_yr_may.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_jun = Tenant::whereHas('payment', function ($query) use ($current_yr_jun){
-            $query->where('created_at', 'like', '%'.$current_yr_jun.'%');
-        })->with(['payment' => function($query) use ($current_yr_jun){
-            $query->where('created_at', 'like', '%'.$current_yr_jun.'%');
+        $occupied_jun = Tenant::where('date_until', 'like', '%'.$current_yr_jun.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_jul = Tenant::whereHas('payment', function ($query) use ($current_yr_jul){
-            $query->where('created_at', 'like', '%'.$current_yr_jul.'%');
-        })->with(['payment' => function($query) use ($current_yr_jul){
-            $query->where('created_at', 'like', '%'.$current_yr_jul.'%');
+        $occupied_jul = Tenant::where('date_until', 'like', '%'.$current_yr_jul.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_aug = Tenant::whereHas('payment', function ($query) use ($current_yr_aug){
-            $query->where('created_at', 'like', '%'.$current_yr_aug.'%');
-        })->with(['payment' => function($query) use ($current_yr_aug){
-            $query->where('created_at', 'like', '%'.$current_yr_aug.'%');
+        $occupied_aug = Tenant::where('date_until', 'like', '%'.$current_yr_aug.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_sept = Tenant::whereHas('payment', function ($query) use ($current_yr_sept){
-            $query->where('created_at', 'like', '%'.$current_yr_sept.'%');
-        })->with(['payment' => function($query) use ($current_yr_sept){
-            $query->where('created_at', 'like', '%'.$current_yr_sept.'%');
+        $occupied_sept = Tenant::where('date_until', 'like', '%'.$current_yr_sept.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_oct = Tenant::whereHas('payment', function ($query) use ($current_yr_oct){
-            $query->where('created_at', 'like', '%'.$current_yr_oct.'%');
-        })->with(['payment' => function($query) use ($current_yr_oct){
-            $query->where('created_at', 'like', '%'.$current_yr_oct.'%');
+        $occupied_oct = Tenant::where('date_until', 'like', '%'.$current_yr_oct.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
         
-        $occupied_nov = Tenant::whereHas('payment', function ($query) use ($current_yr_nov){
-            $query->where('created_at', 'like', '%'.$current_yr_nov.'%');
-        })->with(['payment' => function($query) use ($current_yr_nov){
-            $query->where('created_at', 'like', '%'.$current_yr_nov.'%');
+        $occupied_nov = Tenant::where('date_until', 'like', '%'.$current_yr_nov.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
 
-        $occupied_dev = Tenant::whereHas('payment', function ($query) use ($current_yr_dev){
-            $query->where('created_at', 'like', '%'.$current_yr_dev.'%');
-        })->with(['payment' => function($query) use ($current_yr_dev){
-            $query->where('created_at', 'like', '%'.$current_yr_dev.'%');
+        $occupied_dev = Tenant::where('date_until', 'like', '%'.$current_yr_dev.'%')->whereHas('phase', function ($query) use ($status){
+            $query->where('status', true);
+        })->with(['phase' => function($query) use ($status){
+            $query->where('status', true);
         }])->latest('id')->count();
        
         $unoccupied_jan = Phase::where('status',false)->where('updated_at','like', '%'.$current_yr_jan.'%')->count();
@@ -181,65 +181,66 @@ class HomeController extends Controller
             $current_yr_oct = Carbon::parse($current_yr - $i.'-10')->format('Y-m');
             $current_yr_nov = Carbon::parse($current_yr - $i.'-11')->format('Y-m');
             $current_yr_dev = Carbon::parse($current_yr - $i.'-12')->format('Y-m');
-            $occupied_jan[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_jan){
-                $query->where('created_at', 'like', '%'.$current_yr_jan.'%');
-            })->with(['payment' => function($query) use ($current_yr_jan){
-                $query->where('created_at', 'like', '%'.$current_yr_jan.'%');
+            $status = true;
+            $occupied_jan[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_jan.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_feb[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_feb){
-                $query->where('created_at', 'like', '%'.$current_yr_feb.'%');
-            })->with(['payment' => function($query) use ($current_yr_feb){
-                $query->where('created_at', 'like', '%'.$current_yr_feb.'%');
+            $occupied_feb[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_feb.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_mar[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_mar){
-                $query->where('created_at', 'like', '%'.$current_yr_mar.'%');
-            })->with(['payment' => function($query) use ($current_yr_mar){
-                $query->where('created_at', 'like', '%'.$current_yr_mar.'%');
+            $occupied_mar[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_mar.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_apr[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_apr){
-                $query->where('created_at', 'like', '%'.$current_yr_apr.'%');
-            })->with(['payment' => function($query) use ($current_yr_apr){
-                $query->where('created_at', 'like', '%'.$current_yr_apr.'%');
+            $occupied_apr[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_apr.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_may[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_may){
-                $query->where('created_at', 'like', '%'.$current_yr_may.'%');
-            })->with(['payment' => function($query) use ($current_yr_may){
-                $query->where('created_at', 'like', '%'.$current_yr_may.'%');
+            $occupied_may[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_may.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_jun[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_jun){
-                $query->where('created_at', 'like', '%'.$current_yr_jun.'%');
-            })->with(['payment' => function($query) use ($current_yr_jun){
-                $query->where('created_at', 'like', '%'.$current_yr_jun.'%');
+            $occupied_jun[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_jun.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_jul[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_jul){
-                $query->where('created_at', 'like', '%'.$current_yr_jul.'%');
-            })->with(['payment' => function($query) use ($current_yr_jul){
-                $query->where('created_at', 'like', '%'.$current_yr_jul.'%');
+            $occupied_jul[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_jul.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_aug[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_aug){
-                $query->where('created_at', 'like', '%'.$current_yr_aug.'%');
-            })->with(['payment' => function($query) use ($current_yr_aug){
-                $query->where('created_at', 'like', '%'.$current_yr_aug.'%');
+            $occupied_aug[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_aug.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_sept[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_sept){
-                $query->where('created_at', 'like', '%'.$current_yr_sept.'%');
-            })->with(['payment' => function($query) use ($current_yr_sept){
-                $query->where('created_at', 'like', '%'.$current_yr_sept.'%');
+            $occupied_sept[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_sept.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_oct[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_oct){
-                $query->where('created_at', 'like', '%'.$current_yr_oct.'%');
-            })->with(['payment' => function($query) use ($current_yr_oct){
-                $query->where('created_at', 'like', '%'.$current_yr_oct.'%');
+            $occupied_oct[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_oct.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_nov[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_nov){
-                $query->where('created_at', 'like', '%'.$current_yr_nov.'%');
-            })->with(['payment' => function($query) use ($current_yr_nov){
-                $query->where('created_at', 'like', '%'.$current_yr_nov.'%');
+            $occupied_nov[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_nov.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
-            $occupied_dev[$i] = Tenant::whereHas('payment', function ($query) use ($current_yr_dev){
-                $query->where('created_at', 'like', '%'.$current_yr_dev.'%');
-            })->with(['payment' => function($query) use ($current_yr_dev){
-                $query->where('created_at', 'like', '%'.$current_yr_dev.'%');
+            $occupied_dev[$i] = Tenant::where('date_until', 'like', '%'.$current_yr_dev.'%')->whereHas('phase', function ($query) use ($status){
+                $query->where('status', true);
+            })->with(['phase' => function($query) use ($status){
+                $query->where('status', true);
             }])->latest('id')->count();
             $arry = [$occupied_jan, $occupied_feb, $occupied_mar, $occupied_apr, $occupied_may, $occupied_jun, $occupied_jul, $occupied_aug, $occupied_sept, $occupied_oct, $occupied_nov, $occupied_dev];
         }
@@ -380,11 +381,11 @@ class HomeController extends Controller
                 ->orWhere('mname', 'like', '%'.$seaching.'%');
             }])->latest('id')->get();
             
-            $section = Section::where('section_name', $seaching)->first();
+            $section = Section::where('section_name', 'like', '%'.$seaching.'%')->latest('id')->first();
             $phase = Phase::where('section_id',(isset($section))? $section->id : '')
                 ->orWhere('stall_no', 'like', '%'.$seaching.'%')
                 ->orWhere('description', 'like', '%'.$seaching.'%')
-                ->whereHas('tenant', function ($query) use ($seaching){
+                ->whereHas('tenant', function ($query) use ($seaching){ 
                 $query->where('lname', 'like', '%'.$seaching.'%')
                 ->orWhere('fname', 'like', '%'.$seaching.'%')
                 ->orWhere('mname', 'like', '%'.$seaching.'%');

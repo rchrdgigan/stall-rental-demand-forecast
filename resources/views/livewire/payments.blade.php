@@ -25,7 +25,7 @@
             <hr>
             <p>Tenant : <b>{{ $tenants_details->fullname ?? 'N/A'}}</b></p>
             <p>Rental Rate : <b>{{ $tenants_details->phase->priceformat ?? 'N/A'}}</b></p>
-            <p>Total Paid : <b>{{ $tenants_details->payment->sum('amount') ?? 'N/A'}}</b></p>
+            <p>Total Paid : <b>{{ "₱ ".number_format($tenants_details->payment->sum('amount')) ?? 'N/A'}}</b></p>
             <hr>
         </div>
     </div>

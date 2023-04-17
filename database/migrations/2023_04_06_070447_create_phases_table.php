@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('stall_no');
             $table->unsignedBigInteger('section_id');
             $table->string('description');
-            $table->string('price');
+            $table->float('price');
+            $table->string('date_year');
             $table->tinyInteger('status')
                 ->default(0)
                 ->comment('1 = occupied, 0 = unoccupied');

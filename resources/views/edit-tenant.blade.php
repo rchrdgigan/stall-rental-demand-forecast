@@ -134,9 +134,9 @@ Edit Tenant
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <label class="col-lg-12 col-form-label" for="dateR">
-                                        Date Register
+                                        Date Register From
                                         </label>
                                         <div class="col-lg-12">
                                             <input type="date" class="form-control" id="dateR" name="date_reg"  value="{{ $edit_tenant->date_reg ?? old('date_reg') }}"  placeholder="Enter a date registered.." required="">
@@ -144,6 +144,22 @@ Edit Tenant
                                                 Please select a date.
                                             </div>
                                             @error('date_reg')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="col-lg-12 col-form-label" for="dateU">
+                                        Date Registered Until
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="date" class="form-control" id="dateU" name="date_until"  value="{{  $edit_tenant->date_until ??  old('date_until') }}"  placeholder="Enter a date until.." required="">
+                                            <div class="invalid-feedback">
+                                                Please select a date.
+                                            </div>
+                                            @error('date_until')
                                                 <small class="text-danger" role="alert">
                                                     {{ $message }}
                                                 </small>

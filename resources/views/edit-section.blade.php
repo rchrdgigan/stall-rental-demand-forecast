@@ -48,6 +48,14 @@ Edit Section
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
+                                    <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                        Year
+                                    </label>
+                                    <div class="col-lg-12">
+                                        <input type="number" name="date_year" min="1900" max="2099" step="1" class="form-control" value="{{$edit_section->date_year ?? old('date_year')}}" required="">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{route('section.index')}}" class="btn btn-secondary ">Cancel</a>
                                         <button type="submit" class="btn btn-primary">Update</button>

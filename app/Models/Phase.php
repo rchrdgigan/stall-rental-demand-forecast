@@ -15,6 +15,7 @@ class Phase extends Model
         'section_id',
         'description',
         'price',
+        'date_year'
     ];
 
     public function getPriceFormatAttribute()

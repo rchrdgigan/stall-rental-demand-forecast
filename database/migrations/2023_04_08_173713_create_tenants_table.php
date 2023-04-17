@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('lname');
             $table->string('fname');
-            $table->string('mname');
-            $table->string('email');
+            $table->string('mname')->nullable();
+            $table->string('email')->nullable();
             $table->string('contact');
             $table->string('date_reg');
+            $table->string('date_until');
             $table->tinyInteger('status')
                 ->default(1)
                 ->comment('1 = active, 0 = inactive');

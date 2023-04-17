@@ -49,14 +49,14 @@
                                                 @endforeach
                                                 <tr>
                                                     <td class="text-end" colspan="3">{{$data->fullname}} | Total Amount : </td>
-                                                    <td class='text-right'>₱ {{(isset($pay_data))?number_format($pay_data->where('tenant_id', $data->id)->sum('amount')) : ''}}</td>
+                                                    <td class='text-right'>₱ {{(isset($pay_data))?number_format($pay_data->where('created_at', 'like', '%'.$_GET['month_of'].'%')->where('tenant_id', $data->id)->sum('amount')) : '0'}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th class="text-center" colspan="3">Total Amount</th>
-                                                <th class='text-right'>₱ {{(isset($pay_data))?number_format($pay_data->sum('amount')) : ''}}</th>
+                                                <th class='text-right'>₱ {{(isset($pay_data))?number_format($pay_data->where('created_at', 'like', '%'.$_GET['month_of'].'%')->sum('amount')) : '0'}}</th>
                                             </tr>
                                         </tfoot>
                                     </table>

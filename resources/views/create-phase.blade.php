@@ -52,7 +52,7 @@ Create New Phase
                                         <div class="col-lg-12">
                                             <select name="cat_id" id="selectCatName" class="form-control">
                                                 @foreach($section as $data)
-                                                <option value="{{$data->id}}">{{$data->section_name}}</option>
+                                                <option value="{{$data->id}}">{{$data->section_name}} ({{$data->date_year}})</option>
                                                 @endforeach
                                             </select>
                                             @error('cat_id')
@@ -81,21 +81,41 @@ Create New Phase
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-lg-12 col-form-label" for="price">
-                                        Price
-                                    </label>
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control" id="price" name="price"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall price.." required="">
-                                        <div class="invalid-feedback">
-                                            Please enter a stall price.
+                                    <div class="col-md-6">
+                                        <label class="col-lg-12 col-form-label" for="price">
+                                            Price
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control" id="price" name="price"  value="{{  $edit_section->section_name ?? old('section_name') }}" placeholder="Enter a stall price.." required="">
+                                            <div class="invalid-feedback">
+                                                Please enter a stall price.
+                                            </div>
+                                            @error('price')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
                                         </div>
-                                        @error('price')
-                                            <small class="text-danger" role="alert">
-                                                {{ $message }}
-                                            </small>
-                                        @enderror
                                     </div>
+                                    <div class="col-md-6">
+                                        <label class="col-lg-6 col-form-label" for="date">
+                                            Date Registered
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="date" class="form-control" id="date" name="date_year"  value="{{  old('date_year') }}"  placeholder="Enter a date.." required="">
+                                            <div class="invalid-feedback">
+                                                Please select a date.
+                                            </div>
+                                            @error('price')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                   
                                 </div>
+                               
                                 <div class="mb-3 row">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{route('phase.index')}}" class="btn btn-secondary ">Cancel</a>

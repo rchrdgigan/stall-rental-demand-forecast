@@ -43,12 +43,14 @@ class PhaseController extends Controller
             'cat_id' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'date_year'=>'required'
         ]);
         Phase::create([
             'stall_no' => $request->stall_no,
             'section_id' => $request->cat_id,
             'description' => $request->description,
             'price' => $request->price,
+            'date_year' => $request->date_year,
         ]);
         return redirect()->route('phase.index')->with("success","Successfully Added!");
     }
@@ -80,12 +82,14 @@ class PhaseController extends Controller
             'cat_id' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'date_year'=>'required'
         ]);
         $phase = Phase::findOrFail($id);
         $phase->stall_no = $request->stall_no;
         $phase->section_id = $request->cat_id;
         $phase->description = $request->description;
         $phase->price = $request->price;
+        $phase->date_year = $request->date_year;
         $phase->update();
         return redirect()->route('phase.index')->with("success","Successfully Updated!");
     }

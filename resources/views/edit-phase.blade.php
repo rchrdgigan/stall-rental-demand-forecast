@@ -82,19 +82,37 @@ Edit Phase
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-lg-12 col-form-label" for="price">
-                                        Price
-                                    </label>
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control" id="price" name="price"  value="{{  $edit_phase->price ?? old('price') }}" placeholder="Enter a stall price.." required="">
-                                        <div class="invalid-feedback">
-                                            Please enter a stall price.
+                                    <div class="col-md-6">
+                                        <label class="col-lg-12 col-form-label" for="price">
+                                            Price
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control" id="price" name="price"  value="{{  $edit_phase->price ?? old('price') }}" placeholder="Enter a stall price.." required="">
+                                            <div class="invalid-feedback">
+                                                Please enter a stall price.
+                                            </div>
+                                            @error('price')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
                                         </div>
-                                        @error('price')
-                                            <small class="text-danger" role="alert">
-                                                {{ $message }}
-                                            </small>
-                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-lg-6 col-form-label" for="date">
+                                            Date Registered
+                                        </label>
+                                        <div class="col-lg-12">
+                                            <input type="date" class="form-control" id="date" name="date_year"  value="{{  $edit_phase->date_year ?? old('date_year') }}"  placeholder="Enter a date.." required="">
+                                            <div class="invalid-feedback">
+                                                Please select a date.
+                                            </div>
+                                            @error('price')
+                                                <small class="text-danger" role="alert">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

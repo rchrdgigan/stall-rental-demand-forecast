@@ -30,10 +30,12 @@ Show Tenant
                         <h3 class="text-center bg-primary text-white rounded-top p-2">Tenants Details</h3>
                         <div class="p-3">
                             Tenants : <b class="float-end">{{ $show_tenant->fullname }}</b> <br>
-                            Email Address : <b class="float-end">{{ $show_tenant->email }}</b> <br>
+                            Email Address : <b class="float-end">{{ $show_tenant->email  ?? 'N/A' }}</b> <br>
                             Contact : <b class="float-end">{{ $show_tenant->contact }}</b> <br>
                             Rental Rate : <b class="float-end">{{ $show_tenant->phase->priceformat ?? 'N/A' }}</b> <br>
-                            Total Paid : <b class="float-end">{{ $show_tenant->payment->sum('amount') ?? 'N/A' }}</b><br>
+                            Date Registered : <b class="float-end">{{ Carbon\Carbon::parse($show_tenant->date_reg)->format('M, d Y') ?? 'N/A' }}</b> <br>
+                            Date Register Until : <b class="float-end">{{ Carbon\Carbon::parse($show_tenant->date_until)->format('M, d Y') ?? 'N/A' }}</b> <br>
+                            Total Paid : <b class="float-end">{{ "₱ ".number_format($show_tenant->payment->sum('amount')) ?? 'N/A' }}</b><br>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -51,7 +53,7 @@ Show Tenant
                                         @foreach($show_tenant->payment as $data)
                                         <tr>
                                             <td>{{ Carbon\Carbon::parse($data->created_at)->format('M d, Y') }}</td>
-                                            <td>{{ $data->amount }}</td>
+                                            <td>{{ "₱ ".number_format($data->amount) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

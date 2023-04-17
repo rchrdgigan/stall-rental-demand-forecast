@@ -27,10 +27,10 @@ class SectionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'section_name'=>'required|unique:sections'
+            'section_name'=>'required',
+            'date_year'=>'required'
         ]);
-
-        $section = Section::create(['section_name'=>$request->section_name]);
+        $section = Section::create(['section_name'=>$request->section_name,'date_year'=>$request->date_year]);
         if($section){
             return back()->with("success","Successfully Added!");
         }else{
@@ -61,7 +61,7 @@ class SectionController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'section_name'=>'required|unique:sections'
+            'section_name'=>'required'
         ]);
 
         $section = Section::findOrFail($id);

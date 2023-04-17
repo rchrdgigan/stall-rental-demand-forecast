@@ -46,6 +46,14 @@ Section
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
+                                    <label class="col-lg-12 col-form-label" for="validationCustom01">
+                                        Year
+                                    </label>
+                                    <div class="col-lg-12">
+                                        <input type="number" name="date_year" min="1900" max="2099" step="1" class="form-control" value="{{Carbon\Carbon::now()->format('Y')}}" required="">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{route('section.index')}}" class="btn btn-secondary ">Cancel</a>
                                         <button type="submit" class="btn btn-primary">Save</button>
@@ -69,7 +77,7 @@ Section
                             <table id="table_id" class="display" style="min-width: 400px">
                                 <thead>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Year</th>
                                         <th>Category</th>
                                         <th>Action</th>
                                     </tr>
@@ -77,7 +85,7 @@ Section
                                 <tbody>
                                     @foreach($sections as $data)
                                     <tr>
-                                        <td>{{Carbon\Carbon::parse($data->created_at)->format('M d, Y')}}</td>
+                                        <td>{{$data->date_year}}</td>
                                         <td>{{$data->section_name}}</td>
                                         <td>
                                             <div class="d-flex">
@@ -90,7 +98,7 @@ Section
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Date Created</th>
+                                        <th>Year</th>
                                         <th>Category</th>
                                         <th>Action</th>
                                     </tr>

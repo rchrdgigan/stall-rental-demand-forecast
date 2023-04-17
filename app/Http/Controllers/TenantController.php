@@ -42,11 +42,12 @@ class TenantController extends Controller
         $validated = $request->validate([
             'lname' => 'required',
             'fname' => 'required',
-            'mname' => 'required',
-            'email' => 'required',
+            'mname' => 'nullable',
+            'email' => 'nullable',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:11',
             'stall_no' => 'required',
             'date_reg' => 'required',
+            'date_until' => 'required',
         ]);
         $phase = Phase::findOrFail($request->stall_no);
         if($phase->status == 1){
@@ -60,6 +61,7 @@ class TenantController extends Controller
                 'contact' => $request->contact,
                 'phase_id' => $request->stall_no,
                 'date_reg' => $request->date_reg,
+                'date_until' => $request->date_until,
             ]);
             $tenant->phase()->update([
                 'status' => true,
@@ -106,11 +108,12 @@ class TenantController extends Controller
         $validated = $request->validate([
             'lname' => 'required',
             'fname' => 'required',
-            'mname' => 'required',
-            'email' => 'required',
+            'mname' => 'nullable',
+            'email' => 'nullable',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:11',
             'stall_no' => 'required',
             'date_reg' => 'required',
+            'date_until' => 'required',
         ]);
         $tenant = Tenant::findOrFail($id);
         $phase = Phase::findOrFail($request->stall_no);
@@ -122,6 +125,7 @@ class TenantController extends Controller
             $tenant->contact = $request->contact;
             $tenant->phase_id = $request->stall_no;
             $tenant->date_reg = $request->date_reg;
+            $tenant->date_until = $request->date_until;
             $tenant->update();
             $tenant->phase()->update([
                 'status' => true,
@@ -141,6 +145,7 @@ class TenantController extends Controller
                 $tenant->contact = $request->contact;
                 $tenant->phase_id = $request->stall_no;
                 $tenant->date_reg = $request->date_reg;
+                $tenant->date_until = $request->date_until;
                 $tenant->update();
                 $tenant->phase()->update([
                     'status' => true,

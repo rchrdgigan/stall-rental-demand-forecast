@@ -18,6 +18,7 @@ class Tenant extends Model
         'contact',
         'phase_id',
         'date_reg',
+        'date_until',
     ];
 
     public function getFullNameAttribute()

@@ -10,7 +10,8 @@ class Section extends Model
     use HasFactory;
 
     protected $fillable = [
-        'section_name'
+        'section_name',
+        'date_year'
     ];
     
 
